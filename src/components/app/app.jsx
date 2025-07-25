@@ -1,4 +1,5 @@
 import { Component } from "react";
+import nextId from "react-id-generator";
 
 import AppInfo from "../app-info/app-info";
 import SearchPanel from "../search-panel/search-panel";
@@ -18,12 +19,29 @@ class App extends Component {
         { name: "Carl W.", salary: 5000, increase: false, id: 3 },
       ],
     };
+    this.maxId = 4;
   }
 
   deleteItem = (id) => {
     this.setState(({ data }) => {
       return {
         data: data.filter(item => item.id !== id),
+      }
+    });
+  };
+
+  addItem = (name, salary) => {
+    const newId = this.maxId;
+    this.maxId += 1;
+
+    this.setState(({ data }) => {
+      return {
+        data: [...data, {
+          name,
+          salary: +salary,
+          increase: false,
+          id: newId,
+        }]
       }
     });
   };
@@ -43,7 +61,7 @@ class App extends Component {
           data={this.state.data}
           onDelete={this.deleteItem}
         />
-        <EmployeesAddForm />
+        <EmployeesAddForm onSubmit={this.addItem}/>
       </div>
     );
   }
