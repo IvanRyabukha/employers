@@ -34,7 +34,7 @@ class EmployeesAddForm extends Component {
           className="add-form d-flex"
           onSubmit={(e) => {
             e.preventDefault();
-            if (!name || !salary) {
+            if (!name || !salary || name.length < 3) {
               return;
             }
 
