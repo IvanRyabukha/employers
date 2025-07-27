@@ -26,6 +26,7 @@ const EmployeesListItem = (props) => {
         className="list-group-item-label"
         onClick={onToggleProp}
         data-toggle="rise"
+        // style={{fontSize: 40, color: 'red', transition: 'all', WebkitTransition: 'all', msTransform: 'all'}}
       >
         {name}
       </span>
